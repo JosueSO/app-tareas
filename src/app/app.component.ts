@@ -23,6 +23,27 @@ export class AppComponent {
     tareaNueva.id = ++this.ultimoId;
     this.tareas.push(tareaNueva);
   }
+
+  borrarTarea(idTarea: number){
+    this.tareas = this.tareas.filter(function(tarea){
+      return tarea.id !== idTarea
+    });
+  }
+
+  tareasCompletadas(): number {
+    return this.tareas.filter(function(tarea) {
+      return tarea.completada === true;
+    }).length;
+  }
+
+  toggleTarea(idTarea: number) {
+    for (const tarea of this.tareas)  {
+      if (tarea.id === idTarea) {
+         tarea.completada = !tarea.completada;
+         break;
+      }
+    }
+  }
 }
 
 class Tarea {
